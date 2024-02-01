@@ -13,5 +13,5 @@
     "dynmat_init": "dynmat_init.dat",
     "dynmat_saddle": "dynmat_saddle.dat",
     "nextracols": 10,
-    "prefactor": "prefactor.txt"
+    "rate_file": "rate.txt"
 }

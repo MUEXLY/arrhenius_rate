@@ -1,0 +1,4 @@
+# energy barrier in eV
+.5101
+# Vineyard prefactor in THz
+208.02988261683637

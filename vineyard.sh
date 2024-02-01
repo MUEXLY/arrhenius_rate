@@ -51,12 +51,22 @@ done
 # find the saddle point index, i.e. the index with the largest energy
 max_index=0
 max_value=${energies[0]}
+min_value=${energies[0]}
 for ((i=0; i<${#energies[@]}; i++)); do
     if (( $(echo "${energies[i]} > $max_value" |bc -l) )); then
         max_index=$i
         max_value=${energies[i]}
     fi
+    if (( $(echo "${energies[i]} < $min_value" |bc -l) )); then
+        min_value=${energies[i]}
+    fi
 done
+
+rate_file=$(cfg '.rate_file')
+
+echo "# energy barrier in eV" > ${rate_file}
+barrier=$(echo "$max_value - $min_value" |bc -l)
+echo $barrier >> ${rate_file}
 
 # LAMMPS starts indexing from 1
 saddle=$((max_index+1))
@@ -78,5 +88,4 @@ gzip --force ${dynmat_init}
 gzip --force ${dynmat_saddle}
 
 # calculate prefactor and print it to file
-prefactor=$(cfg '.prefactor')
-python prefactor.py ${dynmat_init}.gz ${dynmat_saddle}.gz > ${prefactor}
+python prefactor.py ${dynmat_init}.gz ${dynmat_saddle}.gz >> ${rate_file}
