@@ -76,7 +76,18 @@ done
 
 rate_file=$(cfg '.rate_file')
 
-echo "# energy barrier in eV" > ${rate_file}
+declare -A energy_units
+energy_units=(
+    ["real"]="kcal/mol"
+    ["metal"]="eV"
+    ["si"]="Joules"
+    ["cgs"]="ergs"
+    ["electron"]="Hartrees"
+    ["micro"]="picogram-micrometer^2/microsecond^2",
+    ["nano"]="attogram-nanometer^2/nanosecond^2"
+)
+
+echo "# energy barrier in ${energy_units[$units]}" > ${rate_file}
 barrier=$(echo "$max_value - $min_value" |bc -l)
 echo $barrier >> ${rate_file}
 
