@@ -1,0 +1,2 @@
+pair_style sw
+pair_coeff * * example/Si.sw Si

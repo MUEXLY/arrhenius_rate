@@ -1,0 +1,35 @@
+# specify units from config file and some other settings
+units ${units}
+atom_style atomic
+atom_modify map array
+boundary p p p
+atom_modify sort 0 0.0
+
+# read in initial data
+read_data ${initial_neb}
+
+# choose potential
+include ${potential_file}
+
+# set up neb run
+variable u uloop ${np}
+
+# initial minimization to relax vacancy
+# TODO: user should be relaxing initial configuration, not us
+displace_atoms all random 0.5 0.5 0.5 123456
+minimize ${etol} ${ftol} 10000 10000
+
+reset_timestep  0
+fix 1 all neb ${kspring}
+
+thermo 100
+
+# run NEB for 2000 steps or to force tolerance
+
+timestep 0.01
+min_style quickmin
+
+print "${maxsteps}"
+
+neb ${etol} ${ftol} ${maxsteps} ${maxsteps} 1000 final ${final_neb}
+write_restart .data_files/data.$u

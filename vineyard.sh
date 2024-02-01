@@ -16,18 +16,30 @@ echo "pair_coeff ${pair_coeff}" >> ${potential_file}
 # set some variables from config file, do neb run with those variables
 lmp=$(cfg '.exec')
 np=$(cfg '.np')
-neb_input=$(cfg '.neb_input')
 neb_log=$(cfg '.neb_log')
-mpirun -np ${np} ${lmp} -partition ${np}x1 -in ${neb_input} \
-    -pl none \
-    -ps none \
-    -log ${neb_log} \
-    -var potential_file ${potential_file}
-
-# set some more variables necessary to perform finite-differencing
+units=$(cfg '.units')
+initial_neb=$(cfg '.initial_neb')
 etol=$(cfg '.etol')
 ftol=$(cfg '.ftol')
 maxsteps=$(cfg '.maxsteps')
+kspring=$(cfg '.kspring')
+final_neb=$(cfg '.final_neb')
+
+mpirun -np ${np} ${lmp} -partition ${np}x1 -in in.neb \
+    -pl none \
+    -ps none \
+    -log ${neb_log} \
+    -var units ${units} \
+    -var initial_neb ${initial_neb} \
+    -var potential_file ${potential_file} \
+    -var np ${np} \
+    -var etol ${etol} \
+    -var ftol ${ftol} \
+    -var kspring ${kspring} \
+    -var maxsteps ${maxsteps} \
+    -var final_neb ${final_neb}
+
+# set some more variables necessary to perform finite-differencing
 dx=$(cfg '.dx')
 dynmat_init=$(cfg '.dynmat_init')
 dynmat_saddle=$(cfg '.dynmat_saddle')
@@ -71,8 +83,10 @@ echo $barrier >> ${rate_file}
 # LAMMPS starts indexing from 1
 saddle=$((max_index+1))
 
+dynmat_log=$(cfg '.dynmat_log')
 # run dynamical matrix calculations for initial and saddle
 mpirun -np ${np} ${lmp} -in in.dynmat \
+    -log ${dynmat_log} \
     -var initial 1 \
     -var saddle ${saddle} \
     -var potential_file ${potential_file} \
