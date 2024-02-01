@@ -1,0 +1,26 @@
+units           metal
+
+atom_style      atomic
+atom_modify     map array
+boundary        p p p
+atom_modify     sort 0 0.0
+
+# first, load initial file
+
+read_restart .data_files/data.${initial}
+include ${potential_file}
+
+min_style cg
+min_modify line quadratic
+minimize ${etol} ${ftol} ${maxsteps} ${maxsteps}
+reset_timestep 0
+
+dynamical_matrix all eskm ${dx} file ${dynmat_init} binary no
+
+clear
+read_restart .data_files/data.${saddle}
+include ${potential_file}
+
+reset_timestep 0
+
+dynamical_matrix all eskm ${dx} file ${dynmat_saddle} binary no

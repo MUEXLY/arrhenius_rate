@@ -1,0 +1,17 @@
+{
+    "exec": "../../emendoz/public/bin/lmp_x86-v4_ampere80_single",
+    "np": 16,
+    "neb_input": "in.neb.sivac",
+    "neb_log": "neb.log",
+    "pair_style": "sw",
+    "pair_coeff": "* * Si.sw Si",
+    "potential_file": "Si.pot",
+    "etol": 0.0,
+    "ftol": 1.0e-5,
+    "maxsteps": 10000,
+    "dx": 1.0e-6,
+    "dynmat_init": "dynmat_init.dat",
+    "dynmat_saddle": "dynmat_saddle.dat",
+    "nextracols": 10,
+    "prefactor": "prefactor.txt"
+}
