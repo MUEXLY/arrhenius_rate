@@ -14,7 +14,7 @@ To run an example, run:
 ./vineyard.sh config.json
 ```
 
-This will perform an NEB run for vacancy hopping in Si, writing both the Vineyard prefactor and energy barrier to `rate.txt`.
+This will perform an NEB run for vacancy hopping in Si, writing both the Vineyard prefactor and energy barrier to `rate.txt`. Details about the calculation of the prefactor calculation are in [vineyard.pdf](https://github.com/jwjeffr/vineyard_prefactor/blob/main/vineyard.pdf).
 
 ##
 
