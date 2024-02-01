@@ -49,9 +49,9 @@ Per MPI rank memory allocation (min/avg/max) = 24.35 | 24.35 | 24.35 Mbytes
    Step          Temp          E_pair         E_mol          TotEng         Press     
       3339   5.3137912e-24 -2213.3374      0             -2213.3374     -3383.3946    
       3340   5.3137912e-24 -2213.3374      0             -2213.3374     -3383.3946    
-Loop time of 0.000279485 on 384 procs for 1 steps with 511 atoms
+Loop time of 0.000290761 on 384 procs for 1 steps with 511 atoms
 
-125.4% CPU use with 16 MPI tasks x 24 OpenMP threads
+99.1% CPU use with 16 MPI tasks x 24 OpenMP threads
 
 Minimization stats:
   Stopping criterion = force tolerance
@@ -65,12 +65,12 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 4.9097e-05 | 6.4909e-05 | 0.00010748 |   0.0 | 23.22
+Pair    | 5.1173e-05 | 6.8331e-05 | 0.00011308 |   0.0 | 23.50
 Neigh   | 0          | 0          | 0          |   0.0 |  0.00
-Comm    | 6.0519e-05 | 0.00010103 | 0.00011739 |   0.0 | 36.15
+Comm    | 6.2918e-05 | 0.000105   | 0.00012284 |   0.0 | 36.11
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.0001135  |            |       | 40.63
+Other   |            | 0.0001174  |            |       | 40.39
 
 Nlocal:        31.9375 ave          42 max          26 min
 Histogram: 3 6 0 0 1 0 3 2 0 1
@@ -90,20 +90,20 @@ reset_timestep 0
 dynamical_matrix all eskm ${dx} file ${dynmat_init} binary no
 dynamical_matrix all eskm 1e-06 file ${dynmat_init} binary no
 dynamical_matrix all eskm 1e-06 file example/dynmat_init.dat binary no
-Loop time of 0.701221 on 384 procs for 3066 steps with 511 atoms
+Loop time of 0.660492 on 384 procs for 3066 steps with 511 atoms
 
-Performance: 3777.732 ns/day, 0.006 hours/ns, 4372.376 timesteps/s, 2.234 Matom-step/s
-102.2% CPU use with 16 MPI tasks x 24 OpenMP threads
+Performance: 4010.683 ns/day, 0.006 hours/ns, 4641.994 timesteps/s, 2.372 Matom-step/s
+99.6% CPU use with 16 MPI tasks x 24 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.06088    | 0.11282    | 0.60177    |  38.0 | 16.09
+Pair    | 0.05979    | 0.1106     | 0.59956    |  38.3 | 16.74
 Neigh   | 0          | 0          | 0          |   0.0 |  0.00
-Comm    | 0.098377   | 0.58732    | 0.63927    |  16.6 | 83.76
+Comm    | 0.05986    | 0.54882    | 0.59963    |  17.2 | 83.09
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.001072   |            |       |  0.15
+Other   |            | 0.001071   |            |       |  0.16
 
 Nlocal:        31.9375 ave          42 max          26 min
 Histogram: 3 6 0 0 1 0 3 2 0 1
@@ -131,7 +131,7 @@ WARNING: Restart file used different # of processors: 1 vs. 16 (src/read_restart
   2 by 2 by 4 MPI processor grid
   pair style sw stores no restart info
   511 atoms
-  read_restart CPU = 0.002 seconds
+  read_restart CPU = 0.003 seconds
 include ${potential_file}
 include example/Si.pot
 pair_style sw
@@ -155,20 +155,20 @@ Neighbor list info ...
       pair build: full/bin/atomonly
       stencil: full/bin/3d
       bin: standard
-Loop time of 0.684474 on 384 procs for 3066 steps with 511 atoms
+Loop time of 0.669722 on 384 procs for 3066 steps with 511 atoms
 
-Performance: 3870.159 ns/day, 0.006 hours/ns, 4479.351 timesteps/s, 2.289 Matom-step/s
-100.4% CPU use with 16 MPI tasks x 24 OpenMP threads
+Performance: 3955.409 ns/day, 0.006 hours/ns, 4578.019 timesteps/s, 2.339 Matom-step/s
+99.7% CPU use with 16 MPI tasks x 24 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.058822   | 0.11309    | 0.60188    |  38.0 | 16.52
+Pair    | 0.053943   | 0.11118    | 0.59731    |  38.1 | 16.60
 Neigh   | 0          | 0          | 0          |   0.0 |  0.00
-Comm    | 0.081523   | 0.57031    | 0.62458    |  16.9 | 83.32
+Comm    | 0.070507   | 0.55747    | 0.61387    |  17.0 | 83.24
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.001071   |            |       |  0.16
+Other   |            | 0.001072   |            |       |  0.16
 
 Nlocal:        31.9375 ave          42 max          24 min
 Histogram: 1 1 6 0 2 0 4 0 1 1
@@ -183,4 +183,4 @@ Total # of neighbors = 17376
 Ave neighs/atom = 34.003914
 Neighbor list builds = 1
 Dangerous builds = 0
-Total wall time: 0:00:03
+Total wall time: 0:00:04
