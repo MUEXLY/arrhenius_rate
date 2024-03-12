@@ -1,3 +1,7 @@
+# ARCHIVED
+
+moved to [github.com/MUEXLY/arrhenius_rate/](https://github.com/MUEXLY/arrhenius_rate/)
+
 # vineyard_prefactor
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
